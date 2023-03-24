@@ -11,6 +11,14 @@ export default abstract class AbstractODM<G> {
     this.model = models[this.modelName] || model(this.modelName, this.schema);
   }
 
+  async getAllCars(): Promise<G[]> {
+    return this.model.find();
+  }
+
+  async getCarById(id: string): Promise<G | null> {
+    return this.model.findById(id);
+  }
+
   async registerCar(payload: G): Promise<G> {
     return this.model.create({ ...payload });
   }
