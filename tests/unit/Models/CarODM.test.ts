@@ -6,7 +6,7 @@ import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
 import CarController from '../../../src/Controllers/CarController';
 
-describe('Consulta de carros cadastrados', function () {
+describe('Testes relacionados a Carros:', function () {
   it('É possível cadastrar um novo carro...', async function () {
     const inputCarMock: ICar = {
       buyValue: 15.99,
@@ -104,4 +104,8 @@ describe('Consulta de carros cadastrados', function () {
   // it('Retorna mensagem caso não seja encontrado o carro com ID informado...', async function () {
   //
   // });
+
+  afterEach(function () {
+    sinon.restore();
+  });
 });
