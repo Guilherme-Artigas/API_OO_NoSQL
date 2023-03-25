@@ -1,10 +1,8 @@
 import sinon from 'sinon';
 import { Model } from 'mongoose';
 import { expect } from 'chai';
-import { Request, Response, NextFunction } from 'express';
 import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
-import CarController from '../../../src/Controllers/CarController';
 
 describe('Testes relacionados a Carros:', function () {
   it('É possível cadastrar um novo carro...', async function () {
@@ -55,7 +53,38 @@ describe('Testes relacionados a Carros:', function () {
     expect(result).to.be.deep.equal(carMock);
   });
 
-  it('É possível consultar a lista de todos os carro cadastrados...', async function () {
+  it('Retorna mensagem informando quando não encontra ID...', async function () {
+    sinon.stub(Model, 'findById').resolves(null);
+
+    const service = new CarService();
+    const result = await service.findById('');
+
+    expect(result).to.be.equal(null);
+  });
+
+  it('É possível atualizar um carro passando ID correto...', async function () {
+    const idMock = '634852326b35b59438fbea2f';
+    const outPutCarMock: ICar = {
+      id: '634852326b35b59438fbea2f',
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    };
+
+    sinon.stub(Model, 'updateOne').resolves();
+    sinon.stub(Model, 'findById').resolves(outPutCarMock);
+
+    const service = new CarService();
+    const result = await service.updateOne(idMock, outPutCarMock);
+
+    expect(result).to.be.deep.equal(outPutCarMock);
+  });
+
+  it('É possível consultar a lista de todos os carros cadastrados...', async function () {
     const listCarMock: ICar[] = [
       {
         id: '634852326b35b59438fbea2f',
@@ -86,26 +115,5 @@ describe('Testes relacionados a Carros:', function () {
     expect(result).to.be.deep.equal(listCarMock);
   });
 
-  it('Retorna mensagem informando ID inválido...', async function () {
-    const req = { body: {}, params: {} } as Request;
-    const res = { status: {}, json: {} } as Response;
-    const next: NextFunction = () => {};
-    res.status = sinon.stub().returns(res);
-    res.json = sinon.stub().returns(null);
-    const carController = new CarController(req, res, next);
-
-    try {
-      await carController.getCarById();
-    } catch (e) {
-      expect((e as Error).message).to.be.equal('Invalid mongo id');
-    }
-  });
-
-  // it('Retorna mensagem caso não seja encontrado o carro com ID informado...', async function () {
-  //
-  // });
-
-  afterEach(function () {
-    sinon.restore();
-  });
+  afterEach(function () { sinon.restore(); });
 });
