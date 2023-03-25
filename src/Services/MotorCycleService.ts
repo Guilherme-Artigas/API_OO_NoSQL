@@ -8,6 +8,18 @@ export default class MotorCycleService {
     return null;
   }
 
+  async find() {
+    const motorCycleODM = new MotorCycleODM();
+    const motoDocument = await motorCycleODM.find();
+    return motoDocument.map((moto) => this.createMotorCycleDomain(moto));
+  }
+
+  async findById(id: string) {
+    const motorCycleODM = new MotorCycleODM();
+    const moto = await motorCycleODM.findById(id);
+    return this.createMotorCycleDomain(moto);
+  }
+
   async create(payload: IMotorcycle) {
     const motorCycleODM = new MotorCycleODM();
     const newMotorcycle = await motorCycleODM.create(payload);
