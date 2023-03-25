@@ -53,6 +53,37 @@ describe('Testes relacionados a Motocicletas:', function () {
     expect(result).to.be.deep.equal(motoMock);
   });
 
+  it('Retorna mensagem informando quando não encontra ID...', async function () {
+    sinon.stub(Model, 'findById').resolves(null);
+
+    const service = new MotorCycleService();
+    const result = await service.findById('a');
+
+    expect(result).to.be.equal(null);
+  });
+
+  it('É possível atualizar um moto pasando ID correto...', async function () {
+    const idMock = '641f732af9c993e305e24894';
+    const outPutMotoMock: IMotorcycle = {
+      buyValue: 30,
+      color: 'Yellow',
+      id: '641f732af9c993e305e24894',
+      model: 'Honda Cb 400f Hornet',
+      status: true,
+      year: 2005,
+      category: 'Street',
+      engineCapacity: 600,
+    };
+
+    sinon.stub(Model, 'updateOne').resolves();
+    sinon.stub(Model, 'findById').resolves(outPutMotoMock);
+
+    const service = new MotorCycleService();
+    const result = await service.updateOne(idMock, outPutMotoMock);
+
+    expect(result).to.be.deep.equal(outPutMotoMock);
+  });
+
   it('É possível consultar todas as motocicletas...', async function () {
     const listMotoMock: IMotorcycle[] = [
       {
@@ -83,4 +114,6 @@ describe('Testes relacionados a Motocicletas:', function () {
 
     expect(result).to.be.deep.equal(listMotoMock);
   });
+
+  afterEach(function () { sinon.restore(); });
 });
