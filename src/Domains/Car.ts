@@ -1,6 +1,7 @@
+import Vehicle from './Vehicle';
 import ICar from '../Interfaces/ICar';
 
-export default class Car {
+export default class Car extends Vehicle {
   protected buyValue: number;
   protected color: string;
   private doorsQty: number;
@@ -11,6 +12,8 @@ export default class Car {
   protected year: number;
 
   constructor(car: ICar) {
+    const { buyValue, color, id, model, status, year } = car;
+    super(buyValue, color, id as string, model, status as boolean, year);
     this.buyValue = car.buyValue;
     this.color = car.color;
     this.doorsQty = car.doorsQty;

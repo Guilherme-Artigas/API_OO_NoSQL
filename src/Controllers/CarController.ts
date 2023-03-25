@@ -4,7 +4,7 @@ import ICar from '../Interfaces/ICar';
 import CarService from '../Services/CarService';
 
 export default class CarController {
-  private req: Request;
+  readonly req: Request;
   private res: Response;
   readonly next: NextFunction;
   private service: CarService;
@@ -17,14 +17,14 @@ export default class CarController {
   }
 
   async getAllCars() {
-    const listAllCars = await this.service.getAllCars();
+    const listAllCars = await this.service.find();
     return this.res.status(200).json(listAllCars);
   }
 
   async getCarById() {
     try {
       isValidObjectId(this.req.params.id);
-      const car = await this.service.getCarById(this.req.params.id);
+      const car = await this.service.findById(this.req.params.id);
       if (!car) return this.res.status(404).json({ message: 'Car not found' });
       return this.res.status(200).json(car);
     } catch (e) {
@@ -44,8 +44,8 @@ export default class CarController {
     };
 
     try {
-      const registration = await this.service.registerCar(newCarRegistration);
-      return this.res.status(201).json(registration);
+      const newCar = await this.service.create(newCarRegistration);
+      return this.res.status(201).json(newCar);
     } catch (error) {
       this.next(error);
     }
@@ -55,7 +55,7 @@ export default class CarController {
     try {
       const { params: { id }, body } = this.req;
       isValidObjectId(id);
-      const carUpdated = await this.service.updateCarById(id, body);
+      const carUpdated = await this.service.updateOne(id, body);
       if (!carUpdated) return this.res.status(404).json({ message: 'Car not found' });
       return this.res.status(200).json(carUpdated);
     } catch (e) {

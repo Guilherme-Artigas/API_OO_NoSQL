@@ -8,27 +8,27 @@ export default class CarService {
     return null;
   }
 
-  async getAllCars() {
+  async find() {
     const carODM = new CarODM();
-    const carDocument = await carODM.getAllCars();
+    const carDocument = await carODM.find();
     return carDocument.map((car) => this.createCarDomain(car));
   }
 
-  async getCarById(id: string) {
+  async findById(id: string) {
     const carODM = new CarODM();
-    const car = await carODM.getCarById(id);
+    const car = await carODM.findById(id);
     return this.createCarDomain(car);
   }
 
-  async registerCar(payload: ICar) {
+  async create(payload: ICar) {
     const carODM = new CarODM();
-    const registeredCar = await carODM.registerCar(payload);
+    const registeredCar = await carODM.create(payload);
     return this.createCarDomain(registeredCar);
   }
 
-  async updateCarById(id: string, payload: ICar) {
+  async updateOne(id: string, payload: ICar) {
     const carODM = new CarODM();
-    const updatedCar = await carODM.updateCarById(id, payload);
+    const updatedCar = await carODM.updateOne(id, payload);
     return this.createCarDomain(updatedCar);
   }
 }
