@@ -31,7 +31,7 @@ describe('Consulta de carros cadastrados', function () {
     sinon.stub(Model, 'create').resolves(outPutCarMock);
 
     const service = new CarService();
-    const result = await service.registerCar(inputCarMock);
+    const result = await service.create(inputCarMock);
 
     expect(result).to.be.deep.equal(outPutCarMock);
   });
@@ -50,7 +50,7 @@ describe('Consulta de carros cadastrados', function () {
     sinon.stub(Model, 'findById').resolves(carMock);
 
     const service = new CarService();
-    const result = await service.getCarById('641db7295da6686c24a2840b');
+    const result = await service.findById('641db7295da6686c24a2840b');
 
     expect(result).to.be.deep.equal(carMock);
   });
@@ -81,7 +81,7 @@ describe('Consulta de carros cadastrados', function () {
     sinon.stub(Model, 'find').resolves(listCarMock);
 
     const service = new CarService();
-    const result = await service.getAllCars();
+    const result = await service.find();
 
     expect(result).to.be.deep.equal(listCarMock);
   });
