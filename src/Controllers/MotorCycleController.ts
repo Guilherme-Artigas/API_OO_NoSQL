@@ -50,4 +50,16 @@ export default class MotorCycleController {
       this.next(error);
     }
   }
+
+  async updateMotoById() {
+    try {
+      const { params: { id }, body } = this.req;
+      isValidObjectId(id);
+      const motoUpdated = await this.service.updateOne(id, body);
+      if (!motoUpdated) return this.res.status(404).json({ message: 'Motorcycle not found' });
+      return this.res.status(200).json(motoUpdated);
+    } catch (e) {
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
+    }
+  }
 }

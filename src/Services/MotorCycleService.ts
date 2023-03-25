@@ -25,4 +25,10 @@ export default class MotorCycleService {
     const newMotorcycle = await motorCycleODM.create(payload);
     return this.createMotorCycleDomain(newMotorcycle);
   }
+
+  async updateOne(id: string, payload: IMotorcycle) {
+    const motoCycleODM = new MotorCycleODM();
+    const updatedMoto = await motoCycleODM.updateOne(id, payload);
+    return this.createMotorCycleDomain(updatedMoto);
+  }
 }

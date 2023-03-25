@@ -21,4 +21,10 @@ routes.post(
     new MotorCycleController(req, res, next).registerMotorcycle(),
 );
 
+routes.put(
+  '/:id',
+  (req: Request, res: Response, next: NextFunction) =>
+    new MotorCycleController(req, res, next).updateMotoById(),
+);
+
 export default routes;
