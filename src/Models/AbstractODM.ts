@@ -22,4 +22,9 @@ export default abstract class AbstractODM<G> {
   async registerCar(payload: G): Promise<G> {
     return this.model.create({ ...payload });
   }
+
+  async updateCarById(id: string, payload: G): Promise<G | null> {
+    await this.model.updateOne({ id }, { $set: { ...payload } });
+    return this.getCarById(id);
+  }
 }

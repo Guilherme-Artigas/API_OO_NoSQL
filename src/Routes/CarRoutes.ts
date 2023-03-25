@@ -21,4 +21,10 @@ routes.post(
     new CarController(req, res, next).registerCar(),
 );
 
+routes.put(
+  '/:id',
+  (req: Request, res: Response, next: NextFunction) =>
+    new CarController(req, res, next).updatedCarById(),
+);
+
 export default routes;
