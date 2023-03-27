@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "2e3d609f-7cfc-4753-8b1f-58ed114fbc6d",
+		"name": "Car Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26477707"
+	},
+	"item": [
+		{
+			"name": "Cadastrando veículos",
+			"item": [
+				{
+					"name": "Cadastrando Marea",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"model\": \"Marea\",\n  \"year\": 2002,\n  \"color\": \"Black\",\n  \"status\": true,\n  \"buyValue\": 15.990,\n  \"doorsQty\": 4,\n  \"seatsQty\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrando Uno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"model\": \"Uno\",\n  \"year\": 2004,\n  \"color\": \"Blue\",\n  \"status\": true,\n  \"buyValue\": 14.000,\n  \"doorsQty\": 4,\n  \"seatsQty\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrando Fox",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"model\": \"Fox\",\n  \"year\": 2010,\n  \"color\": \"Red\",\n  \"status\": true,\n  \"buyValue\": 30.600,\n  \"doorsQty\": 2,\n  \"seatsQty\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Atualizando veículos",
+			"item": [
+				{
+					"name": "Atualizando o Marea",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"model\": \"Palio\",\n  \"year\": 2015,\n  \"color\": \"Yellow\",\n  \"status\": true,\n  \"buyValue\": 25.700,\n  \"doorsQty\": 4,\n  \"seatsQty\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/cars/641edcaa3b0cba39c5c409a2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"cars",
+								"641edcaa3b0cba39c5c409a2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizando ID inválido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"model\": \"Palio\",\n  \"year\": 2015,\n  \"color\": \"Yellow\",\n  \"status\": true,\n  \"buyValue\": 25.700,\n  \"doorsQty\": 4,\n  \"seatsQty\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/cars/641edcaa3b0cba39c5c409a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"cars",
+								"641edcaa3b0cba39c5c409a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cadastrando Motocicletas",
+			"item": [
+				{
+					"name": "Cadastrando Honda CB 600",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"model\": \"Honda Cb 600f Hornet\",\n  \"year\": 2005,\n  \"color\": \"Yellow\",\n  \"status\": true,\n  \"buyValue\": 30.000,\n  \"category\": \"Street\",\n  \"engineCapacity\": 600\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/motorcycles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"motorcycles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Buscando veículos",
+			"item": [
+				{
+					"name": "Lista completa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/cars/641ece091c5a1244a3781825",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"cars",
+								"641ece091c5a1244a3781825"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Por ID inválido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/cars/641ee091c5a1244a3781825",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"cars",
+								"641ee091c5a1244a3781825"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Por ID inexistente no banco",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/cars/641ececf1c5a1244a3781819",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"cars",
+								"641ececf1c5a1244a3781819"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Buscando Motocicletas",
+			"item": [
+				{
+					"name": "Busca pelo ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
